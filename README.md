@@ -1,27 +1,111 @@
-# ApplicationBuildingLab3
+Application Building Lab 3
+Instructions
+Using the same patterns we've used so far, replace the data in the conversation thread component with dynamic data read from variables defined in the component's controllers.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.1.2.
+As before, try your best to do this on your own before looking at the code provided here for reference.
 
-## Development server
+The steps are:
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Add a senderMessages array to conversation-thread-component.component.ts
+Add a userMessages array to conversation-thread-component.component.ts
+We will have additional work to do to figure out how to show the messages in the right sequence, but we will handle that later in the source
 
-## Code scaffolding
+Modify the conversation-thread-component.comopnent.html view to use both arrays defined in the model
+Add a message variable in the user-message-component.component.ts file. Make sure to tag it with the @Input annotation, so you can set its value in the parent component's view
+Modify the user-message-component.component.html view to use the message.text property instead of hardcoded text
+Solution
+When you're done with your changes, your source files will look like this:
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+conversation-thread-component.component.ts
+import { Component, OnInit } from "@angular/core";
 
-## Build
+@Component({
+  selector: "app-conversation-thread-component",
+  templateUrl: "./conversation-thread-component.component.html",
+  styleUrls: ["./conversation-thread-component.component.css"],
+})
+export class ConversationThreadComponentComponent implements OnInit {
+  senderMessages = [
+    {
+      sender: { firstName: "Ludovic" },
+      text: "Message from Ludovic",
+      conversationId: 1,
+      sequenceNumber: 0,
+    },
+    {
+      sender: { firstName: "Jessica" },
+      text: "Message from Jessica",
+      conversationId: 1,
+      sequenceNumber: 1,
+    },
+  ];
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+  userMessages = [
+    {
+      sender: { firstName: "Aurelie" },
+      text: "Message from Aurelie",
+      conversationId: 1,
+      sequenceNumber: 2,
+    },
+  ];
+  constructor() {}
 
-## Running unit tests
+  ngOnInit(): void {}
+}
+conversation-thread-component.component.html
+<div class="container">
+  <div class="row" *ngFor="let senderMessage of senderMessages">
+    <div class="col-9 p-3">
+      <app-sender-message-component
+        [message]="senderMessage"
+      ></app-sender-message-component>
+    </div>
+  </div>
+</div>
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+<div class="container">
+  <div class="row" *ngFor="let userMessage of userMessages">
+    <div class="col-3 p-3"></div>
+    <div class="col-9 p-3">
+      <app-user-message-component
+        [message]="userMessage"
+      ></app-user-message-component>
+    </div>
+  </div>
+</div>
+user-message-component.component.ts
+import { Component, Input, OnInit } from "@angular/core";
 
-## Running end-to-end tests
+@Component({
+  selector: "app-user-message-component",
+  templateUrl: "./user-message-component.component.html",
+  styleUrls: ["./user-message-component.component.css"],
+})
+export class UserMessageComponentComponent implements OnInit {
+  @Input() message = {
+    sender: { firstName: "Ludovic" },
+    text: "Message from Ludovic",
+    conversationId: 1,
+    sequenceNumber: 0,
+  };
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+  constructor() {}
 
-## Further help
+  ngOnInit(): void {}
+}
+user-message-component.component.html
+<div class="container">
+  <div class="row">
+    <div class="col-2 p-3"></div>
+    <div class="col-10 p-3 border rounded-5">
+      <span>{{message.text}}</span>
+    </div>
+  </div>
+</div>
+Now you have an application that:
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Leverages Bootstrap to have the target layout
+Leverages Bootstrap for basic styling
+Leverages Angular data binding to read data dynamic from TypeScript code instead of hardcoding it in HTML
+Leverages Angular directives to modify the DOM by looping through arrays and using conditionals to decide whether or not to display specific values or text
+We've successfully used our current Angular knowledge to create a strong foundation for our application. In order to add real functionality, however, we need to dive deeper into Angular features.

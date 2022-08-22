@@ -1,15 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from "@angular/core";
+import { User } from "src/app/user.model";
 
 @Component({
-  selector: 'app-contact-component',
-  templateUrl: './contact-component.component.html',
-  styleUrls: ['./contact-component.component.css']
+  selector: "app-contact-component",
+  templateUrl: "./contact-component.component.html",
+  styleUrls: ["./contact-component.component.css"],
 })
 export class ContactComponentComponent implements OnInit {
+  @Input()user!: User;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { FormsModule } from "@angular/forms";
 import { AppComponent } from './app.component';
 import { ConversationHistoryComponentComponent } from './conversation-history-component/conversation-history-component.component';
 import { ConversationThreadComponentComponent } from './conversation-thread-component/conversation-thread-component.component';
@@ -10,6 +10,8 @@ import { SendMessageComponentComponent } from './send-message-component/send-mes
 import { SenderMessageComponentComponent } from './sender-message-component/sender-message-component.component';
 import { UserMessageComponentComponent } from './user-message-component/user-message-component.component';
 import { ContactComponentComponent } from './contact-component/contact-component.component';
+import { HighlightDirective } from './highlight.directive';
+import { BoldDirective } from './bold.directive';
 
 @NgModule({
   declarations: [
@@ -22,10 +24,13 @@ import { ContactComponentComponent } from './contact-component/contact-component
     SenderMessageComponentComponent,
     UserMessageComponentComponent,
     ContactComponentComponent,
-    ContactComponentComponent
+    ContactComponentComponent,
+    HighlightDirective,
+    BoldDirective
   ],
   imports: [
     BrowserModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

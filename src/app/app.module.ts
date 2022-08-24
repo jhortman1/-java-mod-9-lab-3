@@ -12,6 +12,10 @@ import { UserMessageComponentComponent } from './user-message-component/user-mes
 import { ContactComponentComponent } from './contact-component/contact-component.component';
 import { HighlightDirective } from './highlight.directive';
 import { BoldDirective } from './bold.directive';
+import { HttpClientModule } from "@angular/common/http";
+import { LoggingService } from "./logging.service";
+import { MessagingDataService } from './messagingDataService.service';
+import { MessageCountComponentComponent } from './message-count-component/message-count-component.component';
 
 @NgModule({
   declarations: [
@@ -26,13 +30,18 @@ import { BoldDirective } from './bold.directive';
     ContactComponentComponent,
     ContactComponentComponent,
     HighlightDirective,
-    BoldDirective
+    BoldDirective,
+    MessageCountComponentComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    LoggingService,
+    MessagingDataService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

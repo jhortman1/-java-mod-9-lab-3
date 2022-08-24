@@ -33,7 +33,7 @@ export class MessagingDataService {
   senderMessagesChanged = new EventEmitter<Message[]>();
 
   getSenderMessages() {
-    this.httpClient.get<Message[]>("http://localhost:8080/api/get-user-messages").subscribe(
+    this.httpClient.get<Message[]>("http://localhost:8080/api/get-sender-messages").subscribe(
         (messages: Message[]) => {
             console.log(messages);
             this.senderMessages = messages;

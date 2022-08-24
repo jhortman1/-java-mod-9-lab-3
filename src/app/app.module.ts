@@ -16,6 +16,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { LoggingService } from "./logging.service";
 import { MessagingDataService } from './messagingDataService.service';
 import { MessageCountComponentComponent } from './message-count-component/message-count-component.component';
+import { SenderMessageCountComponentComponent } from './sender-message-count-component/sender-message-count-component.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { MessageCountComponentComponent } from './message-count-component/messag
     ContactComponentComponent,
     HighlightDirective,
     BoldDirective,
-    MessageCountComponentComponent
+    MessageCountComponentComponent,
+    SenderMessageCountComponentComponent
   ],
   imports: [
     BrowserModule,
